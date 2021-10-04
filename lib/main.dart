@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task_magang/screen/home_screen.dart';
+import 'package:get/get.dart';
+import 'package:task_magang/ui/check_in_page.dart';
 
 void main() => runApp(MainApp());
 
@@ -8,9 +9,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      theme: ThemeData(fontFamily: 'poppins'),
       title: 'Demo GetX',
-      home: HomeScreen(),
+      home: CheckInPage(),
     );
   }
 }
