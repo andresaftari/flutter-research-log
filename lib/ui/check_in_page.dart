@@ -8,66 +8,69 @@ class CheckInPage extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color.fromRGBO(177, 17, 22, 5),
-              Color.fromRGBO(237, 28, 36, 5),
-            ]),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        key: scaffoldKey,
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {},
-            splashRadius: 25.0,
-            icon: Icon(Icons.close),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          actions: [
-            ElevatedButton.icon(
-              onPressed: () {},
-              icon: Icon(Icons.history_rounded),
-              label: Text('Riwayat'),
-              style: ElevatedButton.styleFrom(
-                elevation: 0,
-                primary: Colors.transparent,
-              ),
-            ),
-          ],
+  Widget build(BuildContext context) => Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color.fromRGBO(177, 17, 22, 5),
+                Color.fromRGBO(237, 28, 36, 5),
+              ]),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(8.0),
-              margin: const EdgeInsets.only(left: 8.0),
-              child: Text(
-                'Check-In Pegawai',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 30,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          key: scaffoldKey,
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {},
+              splashRadius: 25.0,
+              icon: Icon(Icons.close),
+            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            actions: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Masih dalam pengembangan')),
+                  );
+                },
+                icon: Icon(Icons.history_rounded),
+                label: Text('Riwayat'),
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  primary: Colors.transparent,
                 ),
               ),
-            ),
-            _loadUserData(context),
-            SizedBox(height: 48.0),
-            _loadBottomCard(context),
-          ],
+            ],
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(8.0),
+                margin: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  'Check-In Pegawai',
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 30,
+                  ),
+                ),
+              ),
+              _loadUserData(context),
+              SizedBox(height: 48.0),
+              _loadBottomCard(context),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 
+  // LOAD CURRENT USER DATA
   _loadUserData(BuildContext context) => Container(
         width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -244,13 +247,13 @@ class CheckInPage extends StatelessWidget {
             onSubmit: () {
               scaffoldKey.currentState!.showBottomSheet(
                 (context) => CheckInDialog(),
+                elevation: 2.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16),
                   ),
                 ),
-                elevation: 2.0
               );
             },
           ),
